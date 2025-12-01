@@ -1,0 +1,61 @@
+<div class="post framed">
+    <img src="{{user.profileImagePath}}" alt="User avatar">
+    <div class="post-body">
+        <div class="username">
+            <a href="/profile/{{user.userId}}">{{user.firstName}} {{user.lastName}}</a>
+        </div>
+        <div class="post-date">{{postDate}}</div>
+        <div class="post-content">
+            {{content}}
+        </div>
+        <div class="post-actions">
+            <!-- Comments -->
+            <a href="/post/{{postId}}" class="far fa-comment"></a>
+            <span class="action-count">{{commentsCount}}</span>
+
+            <!-- Likes / Hearts -->
+            {{#isHearted}}
+            <form method="get" action="/post/{{postId}}/heart/false">
+                <button type="submit" class="fa fa-heart" style="color:red;"></button>
+            </form>
+            {{/isHearted}}
+            {{^isHearted}}
+            <form method="get" action="/post/{{postId}}/heart/true">
+                <button type="submit" class="far fa-heart"></button>
+            </form>
+            {{/isHearted}}
+            <span class="action-count">{{heartsCount}}</span>
+
+            <!-- Bookmarks -->
+            {{#isBookmarked}}
+            <form method="get" action="/post/{{postId}}/bookmark/false">
+                <button class="fa fa-bookmark"></button>
+            </form>
+            {{/isBookmarked}}
+            {{^isBookmarked}}
+            <form method="get" action="/post/{{postId}}/bookmark/true">
+                <button class="far fa-bookmark"></button>
+            </form>
+            {{/isBookmarked}}
+
+            <!-- Reposts -->
+            {{#isReposted}}
+            <form method="get" action="/post/{{postId}}/repost/false">
+                <button class="fa fa-undo"></button>
+            </form>
+            {{/isReposted}}
+            {{^isReposted}}
+            <form method="get" action="/post/{{postId}}/repost/true">
+                <button class="fa fa-retweet"></button>
+            </form>
+            {{/isReposted}}
+            <span class="action-count">{{repostCount}}</span>
+        </div>
+
+
+        <!-- Comments container -->
+        {{#isShowComents}}
+        {{> fragments/comments_container}}
+        {{/isShowComents}}
+    </div>
+</div>

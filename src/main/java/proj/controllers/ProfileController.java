@@ -1,0 +1,82 @@
+package proj.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import proj.models.User;
+import proj.services.UserService;
+import proj.utility.Utility;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+/**
+ * Handles /profile URL and its sub URLs.
+ */
+@Controller
+@RequestMapping("/profile")
+public class ProfileController {
+
+    // UserService has user login and registration related functions.
+    private final UserService userService;
+    private final DataSource dataSource; 
+
+    /**
+     * See notes in AuthInterceptor.java regarding how this works 
+     * through dependency injection and inversion of control.
+     */
+    @Autowired
+    public ProfileController(UserService userService, DataSource dataSource) {
+        this.userService = userService;
+        this.dataSource = dataSource; 
+    }
+
+    /**
+     * This function handles /profile URL itself.
+     * This serves the webpage that shows posts of the logged in user.
+     */
+    @GetMapping
+    public ModelAndView profileOfLoggedInUser() {
+        System.out.println("User is attempting to view profile of the logged in user.");
+        return profileOfSpecificUser(userService.getLoggedInUser().getUserId());
+    }
+
+    /**
+     * This function handles /profile/{userId} URL.
+     * This serves the webpage that shows posts of a speific user given by userId.
+     * See comments in PeopleController.java in followUnfollowUser function regarding 
+     * how path variables work.
+     */
+    @GetMapping("/{userId}")
+    public ModelAndView profileOfSpecificUser(@PathVariable("userId") String userId) {
+        System.out.println("User is attempting to view profile: " + userId);
+        
+        // See notes on ModelAndView in BookmarksController.java.
+        ModelAndView mv = new ModelAndView("posts_page");
+
+        // Following line populates sample data.
+        // You should replace it with actual data from the database.
+
+        // If an error occured, you can set the following property with the
+        // error message to show the error message to the user.
+         //String errorMessage = "Some error occured!";
+       // mv.addObject("errorMessage", errorMessage);
+
+        // Enable the following line if you want to show no content message.
+        // Do that if your content list is empty.
+         mv.addObject("isNoContent", true);
+        return mv;
+    }
+    
+}
