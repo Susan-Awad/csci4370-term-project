@@ -1,24 +1,63 @@
-<!--
-Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
-
-This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 {{> fragments/html_header}}
 
 <body>
 
-    {{> fragments/top_bar}}
+{{> fragments/nav_bar}}
 
-    {{> fragments/new_post_form}}
+<div class="container">
+    
+    <h1 class="page-title">Welcome, {{firstName}}!</h1>
+    <h2 class="month-title">Overview for {{currentMonth}}</h2>
 
-    {{> fragments/no_content_message}}
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+        <div class="card income-card">
+            <h3>Total Income</h3>
+            <p class="amount positive">${{totalIncome}}</p>
+        </div>
 
-    {{> fragments/posts_container}}
+        <div class="card expense-card">
+            <h3>Total Expenses</h3>
+            <p class="amount negative">${{totalExpense}}</p>
+        </div>
 
-    {{> fragments/footer}}
+        <div class="card net-card">
+            <h3>Net</h3>
+            <p class="amount net">${{net}}</p>
+        </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <h2 class="section-title">Recent Transactions</h2>
+
+    {{^transactions}}
+        <p>No transactions yet. <a href="/transactions/add">Add your first one →</a></p>
+    {{/transactions}}
+
+    {{#transactions}}
+    <table class="transactions-table">
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+
+        {{#transactions}}
+        <tr>
+            <td>{{date}}</td>
+            <td>{{type}}</td>
+            <td class="td-amount">${{amount}}</td>
+            <td>{{description}}</td>
+        </tr>
+        {{/transactions}}
+    </table>
+    {{/transactions}}
+
+</div>
 
 </body>
-
 </html>

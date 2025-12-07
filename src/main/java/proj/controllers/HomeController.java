@@ -1,18 +1,21 @@
 package proj.controllers;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+
+import java.math.BigDecimal;
+import java.time.YearMonth;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import proj.services.UserService;
+import proj.services.TransactionService;
+import proj.models.Transaction;
 
 /**
  * This controller handles the home page and some of it's sub URLs.
@@ -20,36 +23,42 @@ import proj.services.UserService;
 @Controller
 @RequestMapping
 public class HomeController {
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    TransactionService transactionService;
 
-    /**
-     * This is the specific function that handles the root URL itself.
-     * 
-     * Note that this accepts a URL parameter called error.
-     * The value to this parameter can be shown to the user as an error message.
-     * See notes in HashtagSearchController.java regarding URL parameters.
-     */
-    @GetMapping
-    public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
-        // See notes on ModelAndView in BookmarksController.java.
+    @GetMapping({"/", "/home"})
+    public ModelAndView webpage (@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
 
-        // Following line populates sample data.
-        // You should replace it with actual data from the database.
-        // List<Post> posts = Utility.createSamplePostsListWithoutComments();
-        int userId = Integer.parseInt(userService.getLoggedInUser().getUserId());
+        var user = userService.getLoggedInUser();
+        if (user == null) {
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
+        
+        int userId = Integer.parseInt(user.getUserId());
+        mv.addObject("firstName", user.getFirstName());
 
-        // If an error occured, you can set the following property with the
-        // error message to show the error message to the user.
-        // An error message can be optionally specified with a url query parameter too.
-        String errorMessage = error;
-        mv.addObject("errorMessage", errorMessage);
+        YearMonth month = YearMonth.now();
+        LocalDate monthStart = month.atDay(1);
+        LocalDate nextMonthStart = month.plusMonths(1).atDay(1);
+        mv.addObject("currentMonth", month.toString());
 
-        // Enable the following line if you want to show no content message.
-        // Do that if your content list is empty.
-        // mv.addObject("isNoContent", true);
+        BigDecimal income = transactionService.getTotalIncomeForMonth(userId, monthStart, nextMonthStart);
+        BigDecimal expense = transactionService.getTotalExpenseForMonth(userId, monthStart, nextMonthStart);
+        BigDecimal net = income.subtract(expense);
+
+        mv.addObject("totalIncome", income);
+        mv.addObject("totalExpense", expense);
+        mv.addObject("net", net);
+
+        List<Transaction> recent = transactionService.getRecentTransactions(userId, 5);
+        mv.addObject("transactions", recent);
+
+        mv.addObject("errorMessage", error);
 
         return mv;
     }
-
 }
