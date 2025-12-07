@@ -42,7 +42,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             HttpServletResponse response, Object handler) throws Exception {
         if (!userService.isAuthenticated()) {
             // Redirect the user to login.
-            response.sendRedirect("/login");
+           response.sendRedirect("/login");
             return false;
         }
         return true;
