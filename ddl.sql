@@ -1,3 +1,9 @@
+-- Create database if it does not already exist
+CREATE DATABASE IF NOT EXISTS budgetTracker;
+
+-- Switch to databse
+USE budgetTracker;
+
 -- Users table 
 CREATE TABLE users (
     user_id       INT AUTO_INCREMENT PRIMARY KEY,
