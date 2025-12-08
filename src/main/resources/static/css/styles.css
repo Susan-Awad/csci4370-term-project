@@ -95,6 +95,17 @@ nav a:hover {
     max-width: 480pt;
     margin: 0 auto;
 }
+.profile-button {
+    max-width: 480pt;
+    margin: 0 auto;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.profile-button:hover {
+    color: var(--highlight-color);
+}
 .container {
     max-width: 480pt;
     margin: 24pt auto;
@@ -314,4 +325,102 @@ nav a:hover {
 
 .td-amount {
     font-weight: bold;
+}
+
+.total-budget-card {
+    margin-top: 20px;
+}
+
+.add-budget-container {
+    background-color: #b3cfff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+
+.add-budget-container form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.budgetMonth input {
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 1px 3px rgba(0,0,0,0.3);
+}
+
+.budgetCategories select {
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 1px 3px rgba(0,0,0,0.3);
+}
+
+.budgetAmount input {
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align: left;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 1px 3px rgba(0,0,0,0.3);
+}
+
+.add-budget-btn {
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 3px rgba(0,0,0,0.3);
+}
+
+.add-budget-btn:hover {
+    background-color:#c3c3c3
+}
+
+.current-budget-header {
+    margin-top: 40px;
+    border: #14171a;
+}
+
+.budget-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.budget-item {
+    border: 2px solid #14171a;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.budget-item .delete-budget-btn {
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 10px; 
+    background-color: #c53222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.budget-item .delete-budget-btn:hover {
+    background-color: #9d291c;
 }
