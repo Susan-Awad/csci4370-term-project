@@ -1,0 +1,3 @@
+Group 3
+Members and Contributions
+Stephanie Colunga: I created the ER model for our budgeting application and identified the functional dependencies needed to normalize the schema to BCNF. These results helped me ensure that each entity (Users, Categories, Transactions, and Budgets) was modeled efficiently with proper keys and relationships. On the backend, I implemented the homepage dashboard and its corresponding Mustache template and CSS styling to display the user's monthly income, expenses, net balance, and recent transactions. I also developed the TransactionService class, which handles SQL queries, retrieves dashboard data, maps query results into Transaction model objects, and provides methods for transaction retrieval and summaries.
