@@ -64,6 +64,35 @@ public class BudgetService {
         }
     }
 
+    public int updateBudget(int user_id, int budget_id, int category_id, String budget_month, Double amount_budgeted) throws SQLException{
+        try (Connection c = datasource.getConnection()) {
+            c.setAutoCommit(false);
+            try {
+                int budgetId;
+                try (PreparedStatement ps = c.prepareStatement(
+                    "UPDATE budgets SET user_id = ?, category_id = ?, budget_month = ?, amount_budgeted = ? WHERE budget_id = ?",
+                    Statement.RETURN_GENERATED_KEYS
+                )) {
+                    ps.setInt(1, user_id);
+                    ps.setInt(2, category_id);
+                    LocalDate date = LocalDate.parse(budget_month + "-01");
+                    ps.setDate(3, java.sql.Date.valueOf(date));
+                    ps.setDouble(4, amount_budgeted);
+                    ps.setInt(5, budget_id);
+                    ps.executeUpdate();
+                    budgetId = budget_id;
+                }
+                c.commit();
+                return budgetId;
+            } catch (Exception e) {
+                c.rollback();
+                throw e;
+            } finally {
+                c.setAutoCommit(true);
+            }
+        }
+    }
+
     public void deleteBudget(int budget_id) throws SQLException {
         try (Connection c = datasource.getConnection()) {
             try (PreparedStatement ps = c.prepareStatement(

@@ -1,8 +1,3 @@
-/**
-Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
-
-This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
-*/
 
 // Make sure the dom is loaded.
 document.addEventListener('DOMContentLoaded', function () {
@@ -21,3 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function editCard(button) {
+    const card = button.closest(".budget-item-view")
+    const editCard = card.nextElementSibling;
+
+    card.style.display = 'none';
+    editCard.style.display = 'block';
+}
+
+function cancelCard(button) {
+    const editCard = button.closest(".budget-item-edit");
+    const viewCard = editCard.previousElementSibling;
+
+    editCard.style.display = 'none';
+    viewCard.style.display = 'block';
+}

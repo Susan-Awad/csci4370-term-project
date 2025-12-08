@@ -348,7 +348,7 @@ nav a:hover {
     border-radius: 10px;
 }
 
-.budgetMonth input {
+.budgetMonth input, .budget-item-edit input {
     padding-top:10px;
     padding-bottom: 10px;
     text-align: center;
@@ -357,7 +357,7 @@ nav a:hover {
     box-shadow: 2px 1px 3px rgba(0,0,0,0.3);
 }
 
-.budgetCategories select {
+.budgetCategories select, .budget-item-edit select {
     padding-top:10px;
     padding-bottom: 10px;
     padding-left: 5px;
@@ -402,15 +402,53 @@ nav a:hover {
     gap: 10px;
 }
 
-.budget-item {
+.budget-item-view {
     border: 2px solid #14171a;
     padding: 20px;
     border-radius: 8px;
     box-sizing: border-box;
 }
 
-.budget-item .delete-budget-btn {
-    width: 100%; 
+.budget-item-edit {
+    display: none;
+    border: 2px solid #14171a;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.budget-item-edit .card-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.budget-item-view .edit-budget-btn {
+    width: 30%;
+    padding: 10px; 
+    margin-top: 10px; 
+    background-color: #c1c1c1;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.budget-item-edit .save-budget-btn {
+    width: 30%;
+    padding: 10px; 
+    margin-top: 10px; 
+    background-color: #c1c1c1;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.budget-item-view .delete-budget-btn {
+    width: 30%;
     padding: 10px; 
     margin-top: 10px; 
     background-color: #c53222;
@@ -421,6 +459,31 @@ nav a:hover {
     font-size: 1rem;
 }
 
-.budget-item .delete-budget-btn:hover {
+.budget-item-edit .cancel-budget-btn {
+    width: 30%;
+    padding: 10px; 
+    margin-top: 10px; 
+    background-color: #c53222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+.budget-item-view .delete-budget-btn:hover {
     background-color: #9d291c;
+}
+
+.budget-item-edit .cancel-budget-btn:hover {
+    background-color: #9d291c;
+}
+
+.budget-item-view .edit-budget-btn:hover {
+    background-color: #a5a5a5;
+}
+
+.budget-item-edit .save-budget-btn:hover {
+    background-color: #a5a5a5;
 }
