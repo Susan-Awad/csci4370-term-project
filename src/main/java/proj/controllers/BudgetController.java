@@ -99,10 +99,10 @@ public class BudgetController {
         List<Budget> out = new ArrayList<>();
         
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1,Integer.parseInt(userId));
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1,Integer.parseInt(userId));
 
-                try (ResultSet rs = pstmt.executeQuery()) {
+                try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
                         String month = rs.getDate("budget_month").toLocalDate().toString();
                         Double amount = rs.getBigDecimal("amount_budgeted").doubleValue();
@@ -133,6 +133,26 @@ public class BudgetController {
             } catch (Exception e) {
                 e.printStackTrace();
                 String m = URLEncoder.encode("Failed to create budget.", StandardCharsets.UTF_8);
+                return "redirect:/budgets/new?error=" + m;
+            }
+
+            return "redirect:/budgets";
+    }
+
+    @PostMapping("/updatebudget")
+    public String updateBudget(
+        @RequestParam("budget_id") String budgetId,
+        @RequestParam("budgetMonth") String budget_month, 
+        @RequestParam("amount") Double amount_budgeted, 
+        @RequestParam("categoryId") String category) {
+            try {
+                int user_id = Integer.parseInt(userService.getLoggedInUser().getUserId());
+                int budget_id = Integer.parseInt(budgetId);
+                int category_id = Integer.parseInt(category);
+                budgetService.updateBudget(user_id, budget_id, category_id, budget_month, amount_budgeted);
+            } catch (Exception e) {
+                e.printStackTrace();
+                String m = URLEncoder.encode("Failed to update budget.", StandardCharsets.UTF_8);
                 return "redirect:/budgets/new?error=" + m;
             }
 
