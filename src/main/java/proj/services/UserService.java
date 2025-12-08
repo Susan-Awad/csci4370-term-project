@@ -54,7 +54,7 @@ public class UserService {
         // Note the ? mark in the query. It is a place holder that we will later replace.
         final String sql = "select * from user where username = ?";
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Following line replaces the first place holder with username.
             pstmt.setString(1, username);
@@ -82,6 +82,75 @@ public class UserService {
             }
         }
         return false;
+    }
+
+    /**
+     * Update first name, last name, and username for a user.
+     */
+    public void updateUserProfile(int userId, String firstName, String lastName, String username) {
+        final String sql = "UPDATE user SET firstName = ?, lastName = ?, username = ? WHERE userId = ?";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            stmt.setString(3, username);
+            stmt.setInt(4, userId);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Helper: get current username by userId.
+     */
+    public String getUsernameByUserId(int userId) {
+        final String sql = "SELECT username FROM user WHERE userId = ?";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("username");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * Helper: get full user (id, firstName, lastName) by id.
+     */
+    public User getUserById(int userId) {
+        final String sql = "SELECT userId, firstName, lastName FROM user WHERE userId = ?";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String id = rs.getString("userId");
+                    String first = rs.getString("firstName");
+                    String last  = rs.getString("lastName");
+                    return new User(id, first, last);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
@@ -117,7 +186,8 @@ public class UserService {
         final String registerSql = "insert into user (username, password, firstName, lastName) values (?, ?, ?, ?)";
 
         try (Connection conn = dataSource.getConnection();
-                PreparedStatement registerStmt = conn.prepareStatement(registerSql)) {
+             PreparedStatement registerStmt = conn.prepareStatement(registerSql)) {
+
             // Following lines replace the placeholders 1-4 with values.
             registerStmt.setString(1, username);
             registerStmt.setString(2, passwordEncoder.encode(password));
@@ -129,5 +199,4 @@ public class UserService {
             return rowsAffected > 0;
         }
     }
-
 }
