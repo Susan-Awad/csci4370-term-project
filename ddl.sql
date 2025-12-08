@@ -1,7 +1,7 @@
 -- Create database if it does not already exist
 CREATE DATABASE IF NOT EXISTS budgetTracker;
 
--- Switch to databse
+-- Switch to database
 USE budgetTracker;
 
 -- Users table 
