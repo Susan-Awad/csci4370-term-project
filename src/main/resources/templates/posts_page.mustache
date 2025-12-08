@@ -11,8 +11,51 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 
     {{> fragments/top_bar}}
 
-    {{> fragments/no_content_message}}
+    {{#profileUser}}
+<div class="content-center" style="margin-top: 32pt;">
 
+    <!-- Account Details Box -->
+    <div class="framed" style="margin-bottom: 24pt; padding: 20pt;">
+        <h2 style="margin-bottom: 12pt;">Account Details</h2>
+
+        <p><strong>First Name:</strong> {{firstName}}</p>
+        <p><strong>Last Name:</strong> {{lastName}}</p>
+        <p><strong>Username:</strong> {{profileUsername}}</p>
+        <p><strong>User ID:</strong> {{userId}}</p>
+    </div>
+
+    <!-- Change Details Box -->
+    <div class="framed" style="padding: 20pt;">
+        <h2 style="margin-bottom: 4pt;">Change Details</h2>
+        <p style="margin-bottom: 12pt; font-size: 10pt; color: gray;">
+            Leave a field blank if you do not want to change it.
+        </p>
+
+        <form method="post" action="/profile/update">
+
+            <div style="margin-top: 12pt;">
+                <label><strong>New First Name</strong></label><br>
+                <input type="text" name="firstName" class="short-input full">
+            </div>
+
+            <div style="margin-top: 12pt;">
+                <label><strong>New Last Name</strong></label><br>
+                <input type="text" name="lastName" class="short-input full">
+            </div>
+
+            <div style="margin-top: 12pt;">
+                <label><strong>New Username</strong></label><br>
+                <input type="text" name="username" class="short-input full">
+            </div>
+
+            <div style="margin-top: 18pt;">
+                <button type="submit" class="action-button">Save Changes</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{{/profileUser}}
     {{> fragments/posts_container}}
 
     {{> fragments/footer}}
