@@ -1,0 +1,54 @@
+<!--
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+-->
+<div class="container">
+    <!-- Budget Section -->
+    <h2 class="page-title">My Budgets</h2>
+
+    <!-- Add Budget -->
+    <div class="add-budget-container">
+        <form method="post" action="/budgets/createbudget">
+            <div class="budgetMonth">
+                <input type="month" id="budgetMonth" name="budgetMonth" required>
+            </div>
+            <div class="budgetCategories">
+                <select id="category" name="categoryId" required>
+                    <option value="" selected disabled>Category</option>
+                    {{#categories}}
+                        <option value="{{category_id}}">{{category_name}} ({{category_type}})</option>
+                    {{/categories}}
+                </select>
+            </div>
+            <div class="budgetAmount">
+                <input type="number" placeholder="e.g. 20.00" id="amount" name="amount" step="0.01" min="0" required>
+            </div>
+            <button type="submit" class="add-budget-btn">Add Budget</button>
+        </form>
+    </div>
+
+    <div class="card total-budget-card">
+        <h3>Total Budget for the Month:</h3>
+        <p class="amount net">${{monthlyBudget}}</p>
+    </div>
+
+    <!-- Budget Items -->
+    <h2 class="current-budget-header">Current Budgets</h2>
+    <div class="budget-items">
+        {{#categories}}
+            {{#budgets}}
+                <div class="budget-item card">
+                    <h3>{{category_name}}</h3>
+                    <p>Month: {{budget_month}}
+                    <p>Amount: ${{amount_budgeted}}</p>
+                    <p>Type: {{category_type}}</p>
+                    <form method="post" action="/budgets/deletebudget">
+                        <input type="hidden" name="budget_id" value="{{budget_id}}">
+                        <button type="submit" class="delete-budget-btn">Delete Budget</button>
+                    </form>
+                </div>
+            {{/budgets}}
+        {{/categories}}
+    </div>
+</div>
