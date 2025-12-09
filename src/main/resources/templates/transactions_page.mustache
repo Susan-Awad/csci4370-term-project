@@ -33,7 +33,7 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 
             <div class="form-row"> 
                 <label for="edit-description"> Description </label> 
-                <input type="text" id="edit-description" name="description" value={{description}} required> 
+                <input type="text" id="edit-description" name="description" value="{{description}}"required> 
             </div> 
 
             <div class="form-row"> 
@@ -58,7 +58,7 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
         </form> 
     </section> 
         {{/editTransaction}}
-        
+
     <!-- Add transacton --> 
     <section class="card add-card"> 
         <h2 class="title"> Add Transaction</h2> 
@@ -120,11 +120,12 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
         <label>Category
         <select name="categoryId" required> 
                 
+              
                 
-                <option value=" ">All</option>
-               
+               <option value=" ">All</option>
 
                 {{#categories}} 
+              
                     <option value="{{categoryId}}"{{#selected}}selected {{/selected}}>{{categoryName}}</option>
                 {{/categories}}
                 </select> 
