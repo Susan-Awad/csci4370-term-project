@@ -80,6 +80,8 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
         <!-- Category filter --> 
         <select name="categoryId" required> 
                 <label for="pick-category">Category
+                
+                
                 {{#categories}}
                     <option value="{{categoryId}}">{{categoryName}}</option>
                 {{/categories}}
@@ -87,6 +89,7 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
                 </label> 
 
         <button type="submit">Apply Filter</button>
+        <a href="/transactions"> Clear Filter</a>
         </form> 
 
        
