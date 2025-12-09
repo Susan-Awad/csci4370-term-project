@@ -1,8 +1,8 @@
 -- Create the database.
-create database if not exists csx370_mb_platform;
+CREATE DATABASE IF NOT EXISTS budgetTracker;
 
 -- Use the created database.
-use csx370_mb_platform;
+USE budgetTracker;
 
 -- Create the user table.
 create table if not exists user (
@@ -62,7 +62,6 @@ create table if not exists bookmark (
 );
 
 -- Create likes table 
-
 CREATE TABLE IF NOT EXISTS likes (
     userId    INT NOT NULL,
     postId    INT NOT NULL,
@@ -74,7 +73,6 @@ CREATE TABLE IF NOT EXISTS likes (
 );
 
 -- Create comments table  
-
 CREATE TABLE IF NOT EXISTS comments (
     commentId INT AUTO_INCREMENT PRIMARY KEY,
     postId    INT NOT NULL,
@@ -89,7 +87,6 @@ CREATE TABLE IF NOT EXISTS comments (
 );
 
 -- Create repost table 
-
 CREATE TABLE IF NOT EXISTS repost (
     userId         INT NOT NULL,           
     postId         INT NOT NULL, 
@@ -101,7 +98,40 @@ CREATE TABLE IF NOT EXISTS repost (
         REFERENCES post(postId) ON DELETE CASCADE
 ); 
 
-                    --- Database Data ---
+-- Categories table 
+CREATE TABLE IF NOT EXISTS categories (
+    category_id    INT AUTO_INCREMENT PRIMARY KEY,
+    category_name  VARCHAR(100) NOT NULL,
+    category_type  ENUM('INCOME', 'EXPENSE') NOT NULL,
+    category_color VARCHAR(20),
+    user_id        INT NOT NULL,
+    CONSTRAINT fk_categories_user
+        FOREIGN KEY (user_id) REFERENCES user(userId)
+        ON DELETE CASCADE
+);
+
+-- Transactions table
+CREATE TABLE IF NOT EXISTS transactions (
+    transaction_id     INT AUTO_INCREMENT PRIMARY KEY,
+    user_id            INT NOT NULL,
+    category_id        INT NOT NULL,
+    transaction_amount DECIMAL(10,2) NOT NULL,
+    transaction_date   DATE NOT NULL,
+    description        VARCHAR(255),
+
+    CONSTRAINT fk_t_user
+        FOREIGN KEY (user_id) REFERENCES user(userId)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_t_category
+        FOREIGN KEY (category_id) REFERENCES categories(category_id)
+        ON DELETE CASCADE,
+
+    INDEX idx_t_user_date (user_id, transaction_date),
+    INDEX idx_t_category (category_id)
+);
+
+-- Database Data 
 
 -- Users (password is bcrypt hash for "pass")
 INSERT INTO `user` (`userId`, `username`, `password`, `firstName`, `lastName`) 
@@ -217,3 +247,10 @@ VALUES (1,1,'2025-10-29 00:03:52'),
 (5,7,'2025-10-29 00:08:44'),
 (5,9,'2025-10-29 00:08:52'),
 (6,9,'2025-10-29 00:35:57');
+
+-- Sample categories for user 1
+INSERT INTO categories (category_name, category_type, category_color, user_id) VALUES
+('Rent',       'EXPENSE', 'red',    1),
+('Groceries',  'EXPENSE', 'green',  1),
+('Paycheck',   'INCOME',  'blue',   1),
+('Fun',        'EXPENSE', 'purple', 1);
