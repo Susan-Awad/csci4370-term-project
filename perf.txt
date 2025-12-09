@@ -1,0 +1,65 @@
+Indexing Queries Used:
+
+1. CREATE INDEX idx_user_category_date ON transactions(user_id, category_id, transaction_date);
+2. CREATE INDEX idx_user_type ON categories(user_id, category_type);
+
+    Queries Affected:
+
+        SELECT SUM(transaction_amount)
+        FROM transactions
+        WHERE user_id = ?
+            AND category_id IN (
+                SELECT category_id
+                FROM categories
+                WHERE user_id = ? AND category_type = 'INCOME'
+            )
+            AND transaction_date >= ?
+            AND transaction_date < ?
+        
+        Time Consumption Before:
+            0.00178 ms (Income)
+
+        Time Consumption After:
+            0.00116 ms (Income)
+            
+
+        SELECT SUM(transaction_amount)
+        FROM transactions
+        WHERE user_id = ?
+            AND category_id IN (
+                SELECT category_id
+                FROM categories
+                WHERE user_id = ? AND category_type = 'EXPENSE'
+            )
+            AND transaction_date >= ?
+            AND transaction_date < ?
+
+        Time Consumption Before:
+            0.00172 ms (Expense)
+
+        Time Consumption After:
+            0.00113 ms (Expense)
+
+
+3. CREATE INDEX idx_user_date_id ON transactions(user_id, transaction_date DESC, transaction_id DESC);
+
+    Query Affected:
+
+        SELECT t.transaction_id,
+            t.transaction_date,
+            t.transaction_amount,
+            t.transaction_description,
+            c.category_type,
+            c.category_id,
+            c.category_name
+        FROM transactions t
+        JOIN categories c ON t.category_id = c.category_id
+        WHERE t.user_id = ?
+        ORDER BY t.transaction_date DESC, t.transaction_id DESC
+        LIMIT ?
+
+        Time Consumption Before:
+            0.00246 ms
+
+        Time Consumption After:
+            0.00162 ms
