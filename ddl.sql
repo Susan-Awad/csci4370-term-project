@@ -18,6 +18,7 @@ create table if not exists user (
     constraint lastName_min_length check (char_length(trim(lastName)) >= 2)
 );
 
+
 -- Categories table 
 CREATE TABLE categories (
     category_id    INT AUTO_INCREMENT PRIMARY KEY,

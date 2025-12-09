@@ -1,59 +1,62 @@
 package proj.models;
 
 public class Category {
-    /**
-     * Unique identifier for the category.
-     */
-    private final String categoryId;
 
-    /**
-     * Name of the category.
-     */
-    private final String catName;
+    private int categoryId;
+    private String categoryName;
+    private String categoryType;   
+    private String categoryColor;
+    private int userId;
 
-    /**
-     * Color of the category.
-     */
-    private final String catColor;
-
-    /**
-     * Constructs a User with specified details.
-     *
-     * @param categoryId           the unique identifier of the category
-     * @param name        the name of the category
-     * @param catColor       the color of the category
-     */
-    public Category(String categoryId, String catName, String catColor) {
-        this.categoryId = categoryId;
-        this.catName = catName;
-        this.catColor = catColor;
+    public Category() {
     }
 
-    /**
-     * Returns the category ID.
-     *
-     * @return the category ID
-     */
-    public String getCategoryId() {
+    public Category(int categoryId, String categoryName, String categoryType,
+                    String categoryColor, int userId) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+        this.categoryColor = categoryColor;
+        this.userId = userId;
+    }
+
+    public int getCategoryId() {
         return categoryId;
     }
 
-    /**
-     * Returns the name of the category.
-     *
-     * @return the name of the category
-     */
-    public String getCatName() {
-        return catName;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    /**
-     * Returns the color of the category.
-     *
-     * @return the color of the category
-     */
-    public String getCatColor() {
-        return catColor;
+    public String getCategoryName() {
+        return categoryName;
     }
 
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public String getCategoryColor() {
+        return categoryColor;
+    }
+
+    public void setCategoryColor(String categoryColor) {
+        this.categoryColor = categoryColor;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

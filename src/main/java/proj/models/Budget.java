@@ -6,36 +6,59 @@ public class Budget {
     /**
      * Unique identifier for the budget.
      */
-    private final String budgetId;
+    private final String budget_id;
 
     /**
      * Month of the budget.
      */
-    private final String month;
+    private final String budget_month;
 
     /**
      * Amount budgeted of the budget.
      */
-    private final Double amountBudgeted;
+    private final Double amount_budgeted;
 
     /**
      * Created at for the budget.
      */
-    private final LocalDate createdAt;
+    private final LocalDate budget_created_at;
+
+    /**
+     * Category id for the budget.
+     */
+    private int category_id;
+
+    /**
+     * Category name for the budget.
+     */
+    private String category_name;
+
+    /**
+     * category type for the budget.
+     */
+    private String category_type;
 
     /**
      * Constructs a User with specified details.
      *
-     * @param budgetId           the unique identifier of the budget
-     * @param month        the month of the budget
-     * @param amountBudgeted         the amount of the budget
-     * @param createdAt the creation date for the budget
+     * @param budget_id           the unique identifier of the budget
+     * @param budget_month        the month of the budget
+     * @param amount_budgeted         the amount of the budget
+     * @param budget_created_at the creation date for the budget
+     * @param category_id the category id for the budget
+     * @param category_type the category type for the budget
+     * @param category_name the category name for the budget
      */
-    public Budget(String budgetId, String month, Double amountBudgeted, LocalDate createdAt) {
-        this.budgetId = budgetId;
-        this.month = month;
-        this.amountBudgeted = amountBudgeted;
-        this.createdAt = createdAt;
+    public Budget(String budget_id, String budget_month, Double amount_budgeted, LocalDate budget_created_at,
+        int category_id, String category_name, String category_type
+    ) {
+        this.budget_id = budget_id;
+        this.budget_month = budget_month;
+        this.amount_budgeted = amount_budgeted;
+        this.budget_created_at = budget_created_at;
+        this.category_id = category_id;
+        this.category_name = category_name;
+        this.category_type = category_type;
     }
 
     /**
@@ -44,7 +67,7 @@ public class Budget {
      * @return the budget ID
      */
     public String getBudgetId() {
-        return budgetId;
+        return budget_id;
     }
 
     /**
@@ -52,8 +75,8 @@ public class Budget {
      *
      * @return the month of the budget
      */
-    public String getMonth() {
-        return month;
+    public String getBudgetMonth() {
+        return budget_month;
     }
 
     /**
@@ -62,7 +85,7 @@ public class Budget {
      * @return the amount budgeted of the budget
      */
     public Double getAmountBudgeted() {
-        return amountBudgeted;
+        return amount_budgeted;
     }
 
     /**
@@ -71,6 +94,33 @@ public class Budget {
      * @return the creation date for the budget
      */
     public LocalDate getCreatedAt() {
-        return createdAt;
+        return budget_created_at;
+    }
+
+    /**
+     * Returns the category id for the budget.
+     *
+     * @return the category id for the budget
+     */
+    public int getCategoyrId() {
+        return category_id;
+    }
+
+    /**
+     * Returns the category name for the budget.
+     *
+     * @return the category name for the budget
+     */
+    public String getCategoryName() {
+        return category_name;
+    }
+
+    /**
+     * Returns the categoy type for the budget.
+     *
+     * @return the category type for the budget
+     */
+    public String getCategoryType() {
+        return category_type;
     }
 }
