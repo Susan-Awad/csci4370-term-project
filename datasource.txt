@@ -1,0 +1,1 @@
+The data for this application was generated using https://www.mockaroo.com/. Four tables were made, each with all the attributes and datatypes of the actual database as well as contraints. Then the website generated the indicated number of sql queries for that database. Then, all the queries were compiled onto one file and used to populate the application.
