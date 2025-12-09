@@ -17,7 +17,7 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
                 <select id="category" name="categoryId" required>
                     <option value="" selected disabled>Category</option>
                     {{#categories}}
-                        <option value="{{category_id}}">{{category_name}} ({{category_type}})</option>
+                        <option value="{{categoryId}}">{{categoryName}} ({{categoryType}})</option>
                     {{/categories}}
                 </select>
             </div>
@@ -36,13 +36,12 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
     <!-- Budget Items -->
     <h2 class="current-budget-header">Current Budgets</h2>
     <div class="budget-items">
-        {{#categories}}
-            {{#budgets}}
+        {{#budgets}}
                 <div class="budget-item-view card">
-                    <h3>{{category_name}}</h3>
+                    <h3>{{categoryName}}</h3>
                     <p>Month: {{budget_month}}
                     <p>Amount: ${{amount_budgeted}}</p>
-                    <p>Type: {{category_type}}</p>
+                    <p>Type: {{categoryType}}</p>
                     <form method="post" action="/budgets/deletebudget">
                         <div class="card-buttons">
                             <button type="button" onClick="editCard(this)" class="edit-budget-btn">Edit</button>
@@ -55,9 +54,9 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
                 <div class="budget-item-edit card">
                     <form method="post" action="/budgets/updatebudget">
                         <select id="categories" name="categoryId" required>
-                            <option value="{{category_id}}" selected>{{category_name}} ({{category_type}})</option>
+                            <option value="{{category_id}}" selected>{{categoryName}} ({{categoryType}})</option>
                             {{#categories}}
-                                <option value="{{category_id}}">{{category_name}} ({{category_type}})</option>
+                                <option value="{{category_id}}">{{categoryName}} ({{categoryType}})</option>
                             {{/categories}}
                         </select>
                         <input type="month" id="budgetMonth" name="budgetMonth" value="{{budget_month}}" required></input>
@@ -71,6 +70,5 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
                     </form>
                 </div>
             {{/budgets}}
-        {{/categories}}
     </div>
 </div>

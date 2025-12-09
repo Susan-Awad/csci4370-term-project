@@ -1,10 +1,10 @@
--- Create the database.
-create database if not exists csx370_mb_platform;
+-- Create database if it does not already exist
+CREATE DATABASE IF NOT EXISTS budgetTracker;
 
--- Use the created database.
-use csx370_mb_platform;
+-- Switch to database
+USE budgetTracker;
 
--- Create the user table.
+-- Users table 
 create table if not exists user (
     userId int auto_increment,
     username varchar(255) not null,
@@ -18,6 +18,7 @@ create table if not exists user (
     constraint lastName_min_length check (char_length(trim(lastName)) >= 2)
 );
 
+
 -- Categories table 
 CREATE TABLE categories (
     category_id    INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,7 +29,7 @@ CREATE TABLE categories (
 
     CONSTRAINT fk_categories_user
         FOREIGN KEY (user_id)
-        REFERENCES user(userId)
+        REFERENCES users(user_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -44,7 +45,7 @@ CREATE TABLE transactions (
 
     CONSTRAINT fk_transactions_user
         FOREIGN KEY (user_id)
-        REFERENCES user(userId)
+        REFERENCES users(user_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
@@ -66,11 +67,11 @@ CREATE TABLE budgets (
 
     CONSTRAINT fk_budgets_user
         FOREIGN KEY (user_id)
-        REFERENCES user(userId)
+        REFERENCES users(user_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
-     CONSTRAINT fk_budgets_category
+    CONSTRAINT fk_budgets_category
         FOREIGN KEY (category_id)
         REFERENCES categories(category_id)
         ON DELETE CASCADE

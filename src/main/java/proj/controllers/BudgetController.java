@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import proj.models.Budget;
+import proj.models.Category;
 import proj.services.UserService;
 import proj.services.BudgetService;
-import proj.models.Category;
+import proj.services.CategoryService;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -39,12 +40,14 @@ public class BudgetController {
     private final UserService userService;
     private final DataSource dataSource; 
     private final BudgetService budgetService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public BudgetController(UserService userService, DataSource dataSource, BudgetService budgetService) {
+    public BudgetController(UserService userService, DataSource dataSource, BudgetService budgetService, CategoryService categoryService) {
         this.userService = userService;
         this.dataSource = dataSource; 
         this.budgetService = budgetService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
@@ -62,15 +65,13 @@ public class BudgetController {
         // Following line populates sample data.
         // You should replace it with actual data from the database.
         try {
+            int user_id = Integer.parseInt(userId);
+
             List<Budget> budgets = getUserBudget(userId);
             LocalDate month = LocalDate.now().withDayOfMonth(1);
-            List<Category> categories = new ArrayList<>();
-            
-            int user_id = Integer.parseInt(userId);
+            List<Category> categories = categoryService.getCategoriesForUser(user_id);
             Double total_budget = budgetService.getMonthlyBudget(user_id, month);
             
-            categories.add(new Category("1", "Food", "Expense", "Red"));
-
             mv.addObject("monthlyBudget", total_budget);
             mv.addObject("categories", categories);
             mv.addObject("budgets", budgets);
@@ -79,6 +80,7 @@ public class BudgetController {
                 mv.addObject("isNoContent", true);
             }
         } catch (Exception e) {
+            mv.addObject("monthlyBudget", 0.00);
         // If an error occured, you can set the following property with the
         // error message to show the error message to the user.
             String errorMessage = "Some error occured!";
@@ -90,7 +92,7 @@ public class BudgetController {
     }
 
     private List<Budget> getUserBudget(String userId) throws SQLException {
-        final String sql = "SELECT B.budget_id, B.budget_month, B.budget_created_at, B.amount_budgeted, C.category_name, C.category_type " +
+        final String sql = "SELECT B.budget_id, B.budget_month, B.budget_created_at, B.amount_budgeted, C.category_id, C.category_name, C.category_type " +
         "FROM budgets B " +
         "JOIN categories C ON B.category_id = C.category_id " +
         "WHERE B.user_id = ? " + 
@@ -112,7 +114,10 @@ public class BudgetController {
                             String.valueOf(rs.getInt("budget_id")),
                             month,
                             amount,
-                            createdAt
+                            createdAt,
+                            rs.getInt("category_id"),
+                            rs.getString("category_name"),
+                            rs.getString("category_type")
                         );
                         out.add(budget);
                     } //while
