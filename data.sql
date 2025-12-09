@@ -1,13 +1,13 @@
-insert into user (userId, username, password, firstName, lastName) values (1, 'wmacaskill0', 'wL7`c1C"hUAoi', 'Wanda', 'MacAskill');
-insert into user (userId, username, password, firstName, lastName) values (2, 'dpapaccio1', 'bR2|U~''A%"=t', 'Denver', 'Papaccio');
-insert into user (userId, username, password, firstName, lastName) values (3, 'vauguste2', 'hH3`LKlhZ``H', 'Verla', 'Auguste');
-insert into user (userId, username, password, firstName, lastName) values (4, 'bfrichley3', 'lB9|f{Zj`5', 'Brandais', 'Frichley');
-insert into user (userId, username, password, firstName, lastName) values (5, 'ecracie4', 'jY4$5`<@IUFj$', 'Etta', 'Cracie');
-insert into user (userId, username, password, firstName, lastName) values (6, 'cbirckmann5', 'zK9{n(hM_b<nM<Wo', 'Cly', 'Birckmann');
-insert into user (userId, username, password, firstName, lastName) values (7, 'geilers6', 'uK3?.z,x', 'Gilbert', 'Eilers');
-insert into user (userId, username, password, firstName, lastName) values (8, 'aambrogioni7', 'xU5|3q`BJt', 'Alister', 'Ambrogioni');
-insert into user (userId, username, password, firstName, lastName) values (9, 'abagg8', 'kL9}U|!$Fj@', 'Arv', 'Bagg');
-insert into user (userId, username, password, firstName, lastName) values (10, 'dmuriel9', 'xH4\znR"T6|),', 'Dalston', 'Muriel');
+insert into user (userId, username, password, firstName, lastName) values (1, 'ladams', '$2a$10$wYoyevwy3gbWQPtBQ/VzZuOl6TeQ8csrZdD31DN3HZS4JIfghM1x2', 'Lily', 'Adams');
+insert into user (userId, username, password, firstName, lastName) values (2, 'jsmith', '$2a$10$XvOUXPklUXeXbEc6/g2houtBqZkdaL0QJcELBe.MmpZHx0h3dUexO', 'John', 'Smith');
+insert into user (userId, username, password, firstName, lastName) values (3, 'swilliams', '$2a$10$6Fb8Te9rJX04PA2xuIZm3u/tWV9vgvnar/SGGIkwXIvm8i3j6ycJq', 'Sara', 'Williams');
+insert into user (userId, username, password, firstName, lastName) values (4, 'oyarrell3', '$2a$04$pjGqlz/9LbsJVhOo0Y4X1OBD6sGLm/hEa.iVsgOoGWq82wEgn.406', 'Othelia', 'Yarrell');
+insert into user (userId, username, password, firstName, lastName) values (5, 'hcicchetto4', '$2a$04$S4lra4N4xR5tDXT/j5O1reQmzTvgsNeECp.OEoshvjHbO9gKWv5.i', 'Hadria', 'Cicchetto');
+insert into user (userId, username, password, firstName, lastName) values (6, 'dcurtoys5', '$2a$04$m25/DgSVGxRKN2YcyLgaNel7rzB81/uLYQB9HQvxmbPfGso6gMxZS', 'Davie', 'Curtoys');
+insert into user (userId, username, password, firstName, lastName) values (7, 'eheustice6', '$2a$04$bXki7uOxoab2SZC54zCue.X2cUFonCNRX5ii3d0PlyAAWK.SlIyOm', 'Emelia', 'Heustice');
+insert into user (userId, username, password, firstName, lastName) values (8, 'hstrand7', '$2a$04$Vx3j93vrxsdOmbjOKX248e2j2bVBe4lTCJ5GmtIEHr56EcOnYhR26', 'Hadley', 'Strand');
+insert into user (userId, username, password, firstName, lastName) values (9, 'kkendle8', '$2a$04$3ezaiTzla8Yu/ou2yRIaY.yTQl3NI3Crx944YdVC3OfZxEgjCJvWC', 'Katalin', 'Kendle');
+insert into user (userId, username, password, firstName, lastName) values (10, 'gnickols9', '$2a$04$7UCWJtXVPhLoFXJEISk.MOHLITdPrM56Sfb4.ZED260sJZshQnctG', 'Gualterio', 'Nickols');
 
 insert into categories (category_id, category_name, category_type, category_color, user_id) values (1, 'Kitchen', 'income', 'Purple', 8);
 insert into categories (category_id, category_name, category_type, category_color, user_id) values (2, 'Food - Salads', 'income', 'Teal', 2);

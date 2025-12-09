@@ -24,7 +24,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.time.YearMonth;
 
 import java.time.LocalDate;
 import javax.sql.DataSource;
@@ -81,7 +80,7 @@ public class BudgetController {
         } catch (Exception e) {
         // If an error occured, you can set the following property with the
         // error message to show the error message to the user.
-            String errorMessage = "Some error occured!";
+            String errorMessage = "Some error occured!" + e.getMessage();
             mv.addObject("errorMessage", errorMessage);
         // Enable the following line if you want to show no content message.
         // Do that if your content list is empty.
@@ -104,7 +103,7 @@ public class BudgetController {
 
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        String month = rs.getDate("budget_month").toLocalDate().toString();
+                        String month = rs.getDate("budget_month").toLocalDate().toString().substring(0,7);
                         Double amount = rs.getBigDecimal("amount_budgeted").doubleValue();
                         LocalDate createdAt = rs.getTimestamp("budget_created_at").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                         
