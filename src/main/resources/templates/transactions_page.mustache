@@ -59,31 +59,34 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
     <form method="get" action="/transactions" class="filter-form"> 
         <label> 
         From: 
-        <input type="date" name="from"> 
+        <input type="date" name="from" value="{{selectedFrom}}"> 
         </label> 
 
         <label> 
         To: 
-       <input type="date" name="to">
+       <input type="date" name="to" value="{{selectedTo}}">
         </label> 
 
         <label> 
         Type: 
         <select name="type">
-        <option value="">All</option> 
-        <option value="Income"> Income</option> 
-        <option value="Expense"> Expense</option> 
-
+        <option value="">All</option>        
+        <option value="Income">Income</option> 
+        <option value="Expense">Expense</option> 
+       
         </select> 
         </label> 
 
         <!-- Category filter --> 
+        <label>Category
         <select name="categoryId" required> 
-                <label for="pick-category">Category
                 
                 
-                {{#categories}}
-                    <option value="{{categoryId}}">{{categoryName}}</option>
+                <option value=" ">All</option>
+               
+
+                {{#categories}} 
+                    <option value="{{categoryId}}"{{#selected}}selected {{/selected}}>{{categoryName}}</option>
                 {{/categories}}
                 </select> 
                 </label> 

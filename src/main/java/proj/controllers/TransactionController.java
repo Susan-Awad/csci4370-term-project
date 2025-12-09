@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import proj.models.User;
+import proj.models.Category;
 import proj.models.Transaction;
 import proj.services.CategoryService;
 import proj.services.TransactionService;
@@ -60,6 +61,10 @@ public class TransactionController {
 
         User loggedIn = userService.getLoggedInUser();
 
+        mv.addObject("selectedFrom", from != null ? from : "");
+        mv.addObject("selectedTo", to != null ?  to : "");
+
+
         if(loggedIn == null) {
             mv.addObject("errorMsg", "Must be logged in to view transactions.");
             mv.addObject("isNoContent", true); 
@@ -68,13 +73,15 @@ public class TransactionController {
         } //if
         int userID = Integer.parseInt(loggedIn.getUserId());
 
-        
 
         List<Transaction> allTransactions = transactionService.getAllTransactionsForUser(userID);
-
+       
         // get categories 
         mv.addObject("categories", categoryService.getCategoriesForUser(userID));
+
+       
         mv.addObject("selectedCategoryId", categoryId);
+
 
         LocalDate dateFrom = null;
         LocalDate dateTo = null;
