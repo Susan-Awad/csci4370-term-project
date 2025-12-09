@@ -26,7 +26,7 @@ public class Budget {
     /**
      * Category id for the budget.
      */
-    private int category_id;
+    private int categoryId;
 
     /**
      * Category name for the budget.
@@ -50,13 +50,13 @@ public class Budget {
      * @param category_name the category name for the budget
      */
     public Budget(String budget_id, String budget_month, Double amount_budgeted, LocalDate budget_created_at,
-        int category_id, String category_name, String category_type
+        int categoryId, String category_name, String category_type
     ) {
         this.budget_id = budget_id;
         this.budget_month = budget_month;
         this.amount_budgeted = amount_budgeted;
         this.budget_created_at = budget_created_at;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
         this.category_name = category_name;
         this.category_type = category_type;
     }
@@ -102,8 +102,8 @@ public class Budget {
      *
      * @return the category id for the budget
      */
-    public int getCategoyrId() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
     /**

@@ -1,6 +1,6 @@
-insert into user (userId, username, password, firstName, lastName) values (1, 'clefleming0', '$2a$04$b8CpYYz3PObavfzK/vNRJepawGssSYVyXwOh0tb0umES4yvD2XoJe', 'Codee', 'Le Fleming');
-insert into user (userId, username, password, firstName, lastName) values (2, 'jguarnier1', '$2a$04$hGbKlOG4M4mOSyskB.Jx0usp8oNQvrTNxOoN28uefYfN0ezBUimia', 'Jessee', 'Guarnier');
-insert into user (userId, username, password, firstName, lastName) values (3, 'bkillock2', '$2a$04$8cMhViqyNv2.DpkoWqircOfy64sMOHmyAKr44P8YTSFiNnEIRqtz2', 'Bernardine', 'Killock');
+insert into user (userId, username, password, firstName, lastName) values (1, 'ladams', '$2a$10$wYoyevwy3gbWQPtBQ/VzZuOl6TeQ8csrZdD31DN3HZS4JIfghM1x2', 'Lily', 'Adams');
+insert into user (userId, username, password, firstName, lastName) values (2, 'jsmith', '$2a$10$XvOUXPklUXeXbEc6/g2houtBqZkdaL0QJcELBe.MmpZHx0h3dUexO', 'John', 'Smith');
+insert into user (userId, username, password, firstName, lastName) values (3, 'swilliams', '$2a$10$6Fb8Te9rJX04PA2xuIZm3u/tWV9vgvnar/SGGIkwXIvm8i3j6ycJq', 'Sara', 'Williams');
 insert into user (userId, username, password, firstName, lastName) values (4, 'oyarrell3', '$2a$04$pjGqlz/9LbsJVhOo0Y4X1OBD6sGLm/hEa.iVsgOoGWq82wEgn.406', 'Othelia', 'Yarrell');
 insert into user (userId, username, password, firstName, lastName) values (5, 'hcicchetto4', '$2a$04$S4lra4N4xR5tDXT/j5O1reQmzTvgsNeECp.OEoshvjHbO9gKWv5.i', 'Hadria', 'Cicchetto');
 insert into user (userId, username, password, firstName, lastName) values (6, 'dcurtoys5', '$2a$04$m25/DgSVGxRKN2YcyLgaNel7rzB81/uLYQB9HQvxmbPfGso6gMxZS', 'Davie', 'Curtoys');

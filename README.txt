@@ -8,3 +8,16 @@ Susan Awad: I created the budgets page for the application, implementing the con
 
 Joelia Agbavon: I created the transactions page and implemented the controller. This allows the user to add new transactions, filters their transactions based on the date, type and category. Users are also able to delete and edit any exisiting transactions. 
 
+
+Test Users:
+Lilly Adams 
+username: ladams 
+password: 111
+
+John Smith 
+username: jsmith 
+password: 123
+
+Sara Williams 
+username: swilliams 
+password: 1234

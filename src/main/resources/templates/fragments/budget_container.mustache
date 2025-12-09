@@ -54,13 +54,13 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
                 <div class="budget-item-edit card">
                     <form method="post" action="/budgets/updatebudget">
                         <select id="categories" name="categoryId" required>
-                            <option value="{{category_id}}" selected>{{categoryName}} ({{categoryType}})</option>
+                            <option value="{{categoryId}}" selected>{{categoryName}} ({{categoryType}})</option>
                             {{#categories}}
-                                <option value="{{category_id}}">{{categoryName}} ({{categoryType}})</option>
+                                <option value="{{categoryId}}">{{categoryName}} ({{categoryType}})</option>
                             {{/categories}}
                         </select>
                         <input type="month" id="budgetMonth" name="budgetMonth" value="{{budget_month}}" required></input>
-                        <input type="number" placeholder="e.g. 20.00" id="amount" name="amount" step="0.01" min="0" value={{amount_budgeted}} required></input>
+                        <input type="number" placeholder="e.g. 20.00" id="amount" name="amount" step="0.01" min="0" value="{{amount_budgeted}}" required></input>
                         <input type="hidden" name="budget_id" value="{{budget_id}}">
                         
                         <div class="card-buttons">
