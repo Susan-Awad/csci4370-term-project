@@ -28,6 +28,8 @@ public class Transaction {
      */
     private final String description;
 
+    private final int categoryId;
+    private final String categoryName;
     /**
      * Constructs a Transaction with specified details.
      *
@@ -37,12 +39,14 @@ public class Transaction {
      * @param type the type for the transaction
      * @param description the description for the transaction
      */
-    public Transaction(String transactionId, LocalDate date, Double amount, String type, String description) {
+    public Transaction(String transactionId, LocalDate date, Double amount, String type, String description, int categoryId, String categoryName) {
         this.transactionId = transactionId;
         this.date = date;
         this.amount = amount;
         this.type = type;
         this.description = description;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     /**
@@ -91,4 +95,12 @@ public class Transaction {
     }
 
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+
+    }
 }

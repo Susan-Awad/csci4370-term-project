@@ -28,7 +28,9 @@ public class TransactionService {
                 rs.getDate("transaction_date").toLocalDate(),                // date
                 rs.getDouble("transaction_amount"),                          // amount
                 rs.getString("category_type"),                               // type (INCOME/EXPENSE from categories table)
-                rs.getString("transaction_description")                      // description
+                rs.getString("transaction_description"),
+                rs.getInt("category_id"),
+                rs.getString("category_name")                   
             );
         }
     }
@@ -77,7 +79,9 @@ public class TransactionService {
                    t.transaction_date,
                    t.transaction_amount,
                    t.transaction_description,
-                   c.category_type
+                   c.category_type,
+                   c.category_id,
+                   c.category_name
             FROM transactions t
             JOIN categories c ON t.category_id = c.category_id
             WHERE t.user_id = ?
@@ -95,7 +99,9 @@ public class TransactionService {
                    t.transaction_date,
                    t.transaction_amount,
                    t.transaction_description,
-                   c.category_type
+                   c.category_type,
+                   c.category_id,
+                   c.category_name
             FROM transactions t
             JOIN categories c ON t.category_id = c.category_id
             WHERE t.user_id = ?
@@ -121,7 +127,9 @@ public class TransactionService {
                    t.transaction_date,
                    t.transaction_amount,
                    t.transaction_description,
-                   c.category_type
+                   c.category_type,
+                   c.category_id, 
+                   c.category_name
             FROM transactions t
             JOIN categories c ON t.category_id = c.category_id
             WHERE t.transaction_id = ?
