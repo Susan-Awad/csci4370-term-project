@@ -1,0 +1,22 @@
+        Approach used for securely storing user passwords
+    --------------------------------------------------------
+
+    In this project, we used a similar approach to Project 2, for storing user passwords.
+    Some of the practices we used are: 
+
+    1. Password Hashing 
+        - When a user registers a new account, their password is not stored in the database as plain text. 
+        - Passwords are hashed before they are saved into the database
+        - BCrypt is used to securely hash the user password into the database by 
+
+    2. BCrypt 
+        - When a user registers an account, the raw password is passed through BCrypt 
+        - BCrypt will then generate a unique 16 bit salt, combined the plain text password
+        - The data will then be ran throught the BCrypt algorithm for a specific number of rounds, and the final hash 
+        is stored into the database
+        - So, when a user tries to log into their account, BCrypt will take the password entered by the user, extract the 
+        salt and cost factor of the stored password, and then re-hash the user input
+        - Then, the new hash is compared to the hashed password stored in the database, and if they are a match, the user 
+        is successfully logged in, otherwise the log in will fail. 
+
+
