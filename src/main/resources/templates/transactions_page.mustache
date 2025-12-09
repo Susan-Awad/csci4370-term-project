@@ -19,7 +19,46 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
     {{.}}
     </div> 
     {{/errorMsg}}
+ <!-- Edit Transaction --> 
+        {{#editTransaction}}
+        <section class="card edit-card"> 
+            <h2 class"title">Edit Transaction</h2> 
+            <form method="post" action="/transactions/edit" class="form-grid"> 
+                <input type="hidden" name="transactionId" value={{transactionId}}>
+            
+            <div class="form-row"> 
+                <label for="edit-date"> Date </label> 
+                <input type="date" id="edit-date" name="date" value={{date}} required> 
+            </div> 
 
+            <div class="form-row"> 
+                <label for="edit-description"> Description </label> 
+                <input type="text" id="edit-description" name="description" value={{description}} required> 
+            </div> 
+
+            <div class="form-row"> 
+                <label for="add-amount">Amount</label> 
+                <input type="number" step="any" id="add-amount" name= "amount" required> 
+            </div> 
+
+            <div class="form-row"> 
+            <select name="categoryId" required> 
+                <label for="pick-category">Category
+                {{#categories}}
+                    <option value="{{categoryId}}">{{categoryName}}</option>
+                {{/categories}}
+                </select> 
+                </label> 
+            </div> 
+
+            <div class="form-actions"> 
+                <a href="/transactions" class="button cancel-button"> Cancel</a> 
+                <button type="submit" class="button"> Save </button> 
+            </div>
+        </form> 
+    </section> 
+        {{/editTransaction}}
+        
     <!-- Add transacton --> 
     <section class="card add-card"> 
         <h2 class="title"> Add Transaction</h2> 
@@ -123,12 +162,14 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
             <td class="cell-actions">
                     <a href="/transactions?editId={{transactionId}}" class="link-button">Edit</a>
             
-
+            
             <form method="post" action="/transactions/delete/{{transactionId}}" style="display:inline;"> 
                 <button type="submit">Delete</button>
                 </form> 
                 </td> 
                 </tr> 
+
+       
             {{/transactions}}
                 </tbody>
             </table> 
@@ -136,45 +177,6 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
     
 
 
-        <!-- Edit Transaction --> 
-        {{#editTransaction}}
-        <section class="card edit-card"> 
-            <h2 class"title">Edit Transaction</h2> 
-            <form method="post" action="/transactions/edit" class="form-grid"> 
-                <input type="hidden" name="transactionId" value={{transactionId}}>
-            
-            <div class="form-row"> 
-                <label for="edit-date"> Date </label> 
-                <input type="date" id="edit-date" name="date" value={{date}} required> 
-            </div> 
-
-            <div class="form-row"> 
-                <label for="edit-description"> Description </label> 
-                <input type="text" id="edit-description" name="description" value={{description}} required> 
-            </div> 
-
-            <div class="form-row"> 
-                <label for="add-amount">Amount</label> 
-                <input type="number" step="any" id="add-amount" name= "amount" required> 
-            </div> 
-
-            <div class="form-row"> 
-            <select name="categoryId" required> 
-                <label for="pick-category">Category
-                {{#categories}}
-                    <option value="{{categoryId}}">{{categoryName}}</option>
-                {{/categories}}
-                </select> 
-                </label> 
-            </div> 
-
-            <div class="form-actions"> 
-                <a href="/transactions" class="button cancel-button"> Cancel</a> 
-                <button type="submit" class="button"> Save </button> 
-            </div>
-        </form> 
-    </section> 
-        {{/editTransaction}}
 
 
   </main>
