@@ -30,6 +30,13 @@ select * from user where username = ?
         FROM budgets
         WHERE user_id = ?
             AND budget_month = ?
+
+-- Description: Updates the users budget information based on the given budget id from the form.
+-- URL: http://localhost:8081/budgets
+    UPDATE budgets 
+    SET user_id = ?, category_id = ?, budget_month = ?, amount_budgeted = ? 
+    WHERE budget_id = ?
+    
 -- Retrieve total income for a given month for a specific user
   SELECT SUM(transaction_amount)
   FROM transactions
