@@ -7,77 +7,127 @@
     {{> fragments/top_bar}}
 
     <main class="page-content">
+        <div class="container categories-page">
+            <div class="content-center">
 
-        <h1>My Categories</h1>
+                <!-- Header -->
+                <section class="card page-header">
+                    <h1 class="page-title">My Categories</h1>
+                    <p class="page-subtitle">
+                        Create and manage your income and expense categories. These are used when you log transactions.
+                    </p>
+                </section>
 
-        {{#errorMessage}}
-            <div class="error">
-                {{.}}
+                <!-- Error message -->
+                {{#errorMessage}}
+                    <div class="error-message">
+                        {{.}}
+                    </div>
+                {{/errorMessage}}
+
+                <!-- Form to add a new category -->
+                <section class="card category-card">
+                    <h2 class="section-title">Add New Category</h2>
+                    <form action="/categories" method="post" class="category-form">
+                        <div class="category-form-row">
+                            <label for="categoryName">Name</label>
+                            <input
+                                type="text"
+                                id="categoryName"
+                                name="categoryName"
+                                class="short-input full"
+                                placeholder="e.g. Groceries, Rent, Paycheck"
+                                required
+                            >
+                        </div>
+
+                        <div class="category-form-row">
+                            <label for="categoryType">Type</label>
+                            <select
+                                id="categoryType"
+                                name="categoryType"
+                                class="short-input full"
+                                required
+                            >
+                                <option value="" disabled selected>Select type</option>
+                                <option value="EXPENSE">Expense</option>
+                                <option value="INCOME">Income</option>
+                            </select>
+                        </div>
+
+                        <div class="category-form-row">
+                            <label for="categoryColor">Color (optional)</label>
+                            <input
+                                type="text"
+                                id="categoryColor"
+                                name="categoryColor"
+                                class="short-input full"
+                                placeholder="e.g. red or #ff0000"
+                            >
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="action-button">
+                                Add Category
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- List of existing categories -->
+                <section class="card category-card">
+                    <h2 class="section-title">Existing Categories</h2>
+
+                    {{#isNoContent}}
+                        <p class="no-content-message">
+                            You don’t have any categories yet. Add one above to get started.
+                        </p>
+                    {{/isNoContent}}
+
+                    {{^isNoContent}}
+                        <table class="category-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Color</th>
+                                    <th class="actions-col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#categories}}
+                                    <tr class="category-row category-{{categoryType}}">
+                                        <td>{{categoryName}}</td>
+                                        <td>
+                                            <span class="badge badge-{{categoryType}}">
+                                                {{categoryType}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{#categoryColor}}
+                                                <span class="color-swatch" style="background-color: {{categoryColor}};"></span>
+                                                <span class="color-text">{{categoryColor}}</span>
+                                            {{/categoryColor}}
+                                            {{^categoryColor}}
+                                                <span class="color-text-muted">None</span>
+                                            {{/categoryColor}}
+                                        </td>
+                                        <td class="actions-cell">
+                                            <form action="/categories/{{categoryId}}/delete" method="post">
+                                                <button type="submit" class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {{/categories}}
+                            </tbody>
+                        </table>
+                    {{/isNoContent}}
+                </section>
+
             </div>
-        {{/errorMessage}}
-
-        <!-- Form to add a new category -->
-        <section class="card">
-            <h2>Add New Category</h2>
-            <form action="/categories" method="post" class="category-form">
-                <div class="form-row">
-                    <label for="categoryName">Name</label>
-                    <input type="text" id="categoryName" name="categoryName" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="categoryType">Type</label>
-                    <select id="categoryType" name="categoryType" required>
-                        <option value="EXPENSE">Expense</option>
-                        <option value="INCOME">Income</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <label for="categoryColor">Color (optional)</label>
-                    <input type="text" id="categoryColor" name="categoryColor" placeholder="e.g. red, #ff0000">
-                </div>
-
-                <button type="submit">Add Category</button>
-            </form>
-        </section>
-
-        <!-- List of existing categories -->
-        <section class="card">
-            <h2>Existing Categories</h2>
-
-            {{#isNoContent}}
-                <p>You don’t have any categories yet.</p>
-            {{/isNoContent}}
-
-            {{^isNoContent}}
-                <table class="category-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Color</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#categories}}
-                            <tr>
-                                <td>{{categoryName}}</td>
-                                <td>{{categoryType}}</td>
-                                <td>{{categoryColor}}</td>
-                                <td>
-                                    <form action="/categories/{{categoryId}}/delete" method="post" style="display:inline;">
-                                        <button type="submit">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {{/categories}}
-                    </tbody>
-                </table>
-            {{/isNoContent}}
-        </section>
-
+        </div>
     </main>
 
     {{> fragments/footer}}
