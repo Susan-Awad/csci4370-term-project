@@ -1,75 +1,64 @@
 package proj.models;
 
 public class Category {
-    /**
-     * Unique identifier for the category.
-     */
-    private final String category_id;
 
-    /**
-     * Name of the category.
-     */
-    private final String category_name;
+    private int categoryId;
+    private String categoryName;
+    private String categoryType;   // "INCOME" or "EXPENSE"
+    private String categoryColor;  // e.g. "red" or "#ff0000"
+    private int userId;
 
-    /**
-     * Type of the category.
-     */
-    private final String category_type;
-
-    /**
-     * Color of the category.
-     */
-    private final String category_color;
-
-    /**
-     * Constructs a User with specified details.
-     *
-     * @param category_id           the unique identifier of the category
-     * @param category_name        the name of the category
-     * @param category_type          the type of the category
-     * @param category_color       the color of the category
-     */
-    public Category(String category_id, String category_name, String category_type,  String category_color) {
-        this.category_id = category_id;
-        this.category_name = category_name;
-        this.category_type = category_type;
-        this.category_color = category_color;
+    public Category() {
     }
 
-    /**
-     * Returns the category ID.
-     *
-     * @return the category ID
-     */
-    public String getCategoryId() {
-        return category_id;
+    public Category(int categoryId, String categoryName, String categoryType,
+                    String categoryColor, int userId) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+        this.categoryColor = categoryColor;
+        this.userId = userId;
     }
 
-    /**
-     * Returns the name of the category.
-     *
-     * @return the name of the category
-     */
-    public String getCatName() {
-        return category_name;
+    // Getters
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    /**
-     * Returns the type of the category.
-     *
-     * @return the type of the category
-     */
+    public String getCategoryName() {
+        return categoryName;
+    }
+
     public String getCategoryType() {
-        return category_type;
+        return categoryType;
     }
 
-    /**
-     * Returns the color of the category.
-     *
-     * @return the color of the category
-     */
-    public String getCatColor() {
-        return category_color;
+    public String getCategoryColor() {
+        return categoryColor;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    // Setters
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public void setCategoryColor(String categoryColor) {
+        this.categoryColor = categoryColor;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
