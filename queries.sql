@@ -66,7 +66,9 @@ SELECT t.transaction_id,
     t.transaction_date,
     t.transaction_amount,
     t.transaction_description,
-    c.category_type
+    c.category_type,
+    c.category_id, 
+    c.category_name
 FROM transactions t
 JOIN categories c ON t.category_id = c.category_id
 WHERE t.user_id = ?
@@ -78,7 +80,9 @@ SELECT t.transaction_id,
     t.transaction_date,
     t.transaction_amount,
     t.transaction_description,
-    c.category_type
+    c.category_type,
+    c.category_id, 
+    c.category_name
 FROM transactions t
 JOIN categories c ON t.category_id = c.category_id
 WHERE t.user_id = ?
@@ -94,7 +98,9 @@ SELECT t.transaction_id,
     t.transaction_date,
     t.transaction_amount,
     t.transaction_description,
-    c.category_type
+    c.category_type,
+    c.category_id, 
+    c.category_name
 FROM transactions t
 JOIN categories c ON t.category_id = c.category_id
 WHERE t.transaction_id = ?;
