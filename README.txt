@@ -6,6 +6,9 @@ Members and Contributions:
 - Joelia Agbavon: I created the transactions page and implemented the controller. This allows the user to add new transactions, filters their transactions based on the date, type and category. Users are also able to delete and edit any exisiting transactions. 
 - Mohammed Nizar Meskine: I created the profile page. This page helps the user to change the user's first name, last name, and username. When the changes are made it is updated in the database.
 
+To run our code, use the following command in the command line: 
+mvn spring-boot:run -D"spring-boot.run.arguments=--server.port=8081"
+
 Technologies and Third-Party Libraries Used:
 Backend Technologies:
 - Java 17
